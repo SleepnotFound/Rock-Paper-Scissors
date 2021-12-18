@@ -1,28 +1,19 @@
-const choice = ['rock','paper','scissors'];                                             //available options for game
-//let start = confirm('Press enter to begin game');
-//(start==true)? game() : console.log('game will not begin');                             //? works like if/else but shorter
+const choice = ['rock','paper','scissors'];                                                 //available options for player/computer
 let playerPoints = 0;
 let computerPoints = 0;
+let playerPlay;
+let computerPlay;
 
-let playerPlay = prompt('type in rock/paper/scissors');
-playerPlay = playerPlay.toLowerCase();                                                  //lowercase answer to compare it with array
 
-let computerPlay = choice[Math.floor(Math.random() * choice.length)];                       //computerTurn will choose 1 of 3 array options when called 
-
-if (playerPlay == choice[0] || playerPlay == choice[1] || playerPlay == choice[2]) {    //validates if user input is valid
-    console.log('user plays: ' + playerPlay)
-    console.log('computer plays: ' + computerPlay)
-    let result = playRound(computerPlay, playerPlay);
-    let points = awardPoints(result);
-    console.log('player: ' + playerPoints);
-    console.log('computer: ' + computerPoints);
+for (let i = 0; i < 5; i++) {                                                               //loops 5 times.from 0 to 4
+    playerPlay = prompt('type in rock/paper/scissors');
+    playerPlay = playerPlay.toLowerCase();                                                  //lowercase answer to compare it with array. updates global 
+    computerPlay = choice[Math.floor(Math.random() * choice.length)];                       //computerTurn will choose 1 of 3 array options when called. updates global 
     
-    }
-else {
-    console.log(playerPlay + ' :is invalid. playround() will not start')
-    }
+    game();                                                                                 //can read new global inputs every time it loops    
+}
 
-function playRound(computerPlay, playerPlay) {
+function playRound(computerPlay, playerPlay) {                                              //possible 9 outcomes when comparing 3 objects. returns a string.
     let result = ['tie', 'win', 'lose'];
     if (computerPlay == choice[0]) {
         switch (playerPlay) {
@@ -66,7 +57,7 @@ function playRound(computerPlay, playerPlay) {
     }
 }
 
-function awardPoints(result) {
+function awardPoints(result) {                                                              //use result argument from playround(string) to assign points
     if (result == 'tie') {
         console.log('no points awarded!')
     }
@@ -81,5 +72,16 @@ function awardPoints(result) {
 }
 
 function game() {
-    
+    if (playerPlay == choice[0] || playerPlay == choice[1] || playerPlay == choice[2]) {    //validates user input. takes 
+        console.log('user plays: ' + playerPlay);
+        console.log('computer plays: ' + computerPlay);                                            
+        let result = playRound(computerPlay, playerPlay);
+        let points = awardPoints(result);
+        console.log('player: ' + playerPoints);
+        console.log('computer: ' + computerPoints);
+        
+        }
+    else {
+        console.log(playerPlay + ' :is invalid. playround() will not start')
+        }
 }
