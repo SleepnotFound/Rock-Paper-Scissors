@@ -5,15 +5,7 @@ let playerPlay;
 let computerPlay;
 
 
-for (let i = 0; i < 5; i++) {                                                               //loops 5 times.from 0 to 4
-    playerPlay = prompt('type in rock/paper/scissors');
-    playerPlay = playerPlay.toLowerCase();                                                  //lowercase answer to compare it with array. updates global 
-    computerPlay = choice[Math.floor(Math.random() * choice.length)];                       //computerTurn will choose 1 of 3 array options when called. updates global 
-    
-    game();                                                                                 //can read new global inputs every time it loops    
-}
-
-function playRound(computerPlay, playerPlay) {                                              //possible 9 outcomes when comparing 3 objects. returns a string.
+function chooseResult(computerPlay, playerPlay) {                                              //possible 9 outcomes when comparing 3 objects. returns a string.
     let result = ['tie', 'win', 'lose'];
     if (computerPlay == choice[0]) {
         switch (playerPlay) {
@@ -57,7 +49,7 @@ function playRound(computerPlay, playerPlay) {                                  
     }
 }
 
-function awardPoints(result) {                                                              //use result argument from playround(string) to assign points
+function awardPoints(result) {                                                              //use result argument from chooseResult(string) to assign points
     if (result == 'tie') {
         console.log('no points awarded!')
     }
@@ -71,17 +63,28 @@ function awardPoints(result) {                                                  
     }
 }
 
-function game() {
+function playGame(decision) {
+    computerPlay = choice[Math.floor(Math.random() * choice.length)];
+    playerPlay = decision;
+    
     if (playerPlay == choice[0] || playerPlay == choice[1] || playerPlay == choice[2]) {    //validates user input. takes 
         console.log('user plays: ' + playerPlay);
         console.log('computer plays: ' + computerPlay);                                            
-        let result = playRound(computerPlay, playerPlay);
+        let result = chooseResult(computerPlay, playerPlay);
         let points = awardPoints(result);
         console.log('player: ' + playerPoints);
         console.log('computer: ' + computerPoints);
         
         }
     else {
-        console.log(playerPlay + ' :is invalid. playround() will not start')
+        console.log(playerPlay + ' :is invalid. chooseResult() will not start')
         }
 }
+
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => {
+    button.addEventListener('click', function() {
+        playGame(button.id);
+    })
+})
