@@ -3,9 +3,26 @@ let playerPoints = 0;
 let computerPoints = 0;
 let playerPlay;
 let computerPlay;
+let round = 0;
 
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => {
+    button.addEventListener('click', function() {
+        playGame(button.id);
+    })
+})
 
-function chooseResult(computerPlay, playerPlay) {                                              //possible 9 outcomes when comparing 3 objects. returns a string.
+function playGame(decision) {
+    computerPlay = choice[Math.floor(Math.random() * choice.length)];
+    playerPlay = decision;                                           
+    let result = chooseResult(computerPlay, playerPlay);
+    let points = awardPoints(result);
+    round++;
+
+    displayMatch(playerPlay, computerPlay, result);
+}
+
+function chooseResult(computerPlay, playerPlay) {
     let result = ['tie', 'win', 'lose'];
     if (computerPlay == choice[0]) {
         switch (playerPlay) {
@@ -13,7 +30,6 @@ function chooseResult(computerPlay, playerPlay) {                               
                 return result[0];
                 break;
             case choice[1]:
-                playerPoints++;
                 return result[1];
                 break;
             case choice[2]:
@@ -49,42 +65,28 @@ function chooseResult(computerPlay, playerPlay) {                               
     }
 }
 
-function awardPoints(result) {                                                              //use result argument from chooseResult(string) to assign points
+function awardPoints(result) {
     if (result == 'tie') {
-        console.log('no points awarded!')
+        //no points. no changes
     }
     else if (result == 'win') {
         playerPoints++;
-        console.log('player scores!');
     }
     else if (result == 'lose') {
         computerPoints++;
-        console.log('computer scores!');
     }
 }
 
-function playGame(decision) {
-    computerPlay = choice[Math.floor(Math.random() * choice.length)];
-    playerPlay = decision;
-    
-    if (playerPlay == choice[0] || playerPlay == choice[1] || playerPlay == choice[2]) {    //validates user input. takes 
-        console.log('user plays: ' + playerPlay);
-        console.log('computer plays: ' + computerPlay);                                            
-        let result = chooseResult(computerPlay, playerPlay);
-        let points = awardPoints(result);
-        console.log('player: ' + playerPoints);
-        console.log('computer: ' + computerPoints);
-        
-        }
-    else {
-        console.log(playerPlay + ' :is invalid. chooseResult() will not start')
-        }
+function displayMatch(player, computer, result) {
+    const uPlays = document.querySelector('.uPlays');
+    const results = document.querySelector('.results');
+    const comPlays = document.querySelector('.comPlays')
+    const yourPoints = document.querySelector('.yourPoints');
+    const comPoints = document.querySelector('.comPoints');
+
+    uPlays.textContent = `${player}`;  
+    comPlays.textContent = `${computer}`;
+    results.textContent = `${result}`;
+    yourPoints.textContent = `${playerPoints}`;
+    comPoints.textContent = `${computerPoints}`;
 }
-
-
-const buttons = document.querySelectorAll('button');
-buttons.forEach(button => {
-    button.addEventListener('click', function() {
-        playGame(button.id);
-    })
-})
