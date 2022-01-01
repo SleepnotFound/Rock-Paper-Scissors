@@ -1,0 +1,27 @@
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 250px;
+    gap: 20px;
+}
+.scoreBoard, .match, .buttons {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+}
+.endMatch {
+    display: flex;
+    justify-content: center;
+}
+
+.displaying {
+    display: flex;
+    flex-direction: column;
+    border: solid 5px black;
+    flex: 0 1 150px;
+}
+
+.displaying div {
+    text-align: center;
+}

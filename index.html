@@ -4,40 +4,48 @@
         <title>Rock-Paper-Scissors</title>
         <meta charset="utf-8">
         <script src="script.js" defer></script>
+        <link rel="stylesheet" href="styles.css">
     </head>
 
     <body>
+        <div class="scoreBoard">
+            <div class="displaying"> 
+                <div>Your Points:</div>
+                <div class="yourPoints">0</div> 
+            </div>
+            <div class="displaying">
+                <div>Round:</div>
+                <div class="currentRound">0</div>
+            </div>
+            <div class="displaying">
+                <div>Computer Points:</div>
+                <div class="comPoints">0</div> 
+            </div>
+        </div>
+
+        <div class="match">
+            <div class="displaying">
+                <div>Player Plays:</div>
+                <div class="uPlays">&nbsp;</div> 
+            </div>
+            <div class="displaying">
+                <div>Its a:</div>
+                <div class="results">&nbsp;</div>
+            </div>
+            <div class="displaying">
+                <div>Computer Plays:</div>
+                <div class="comPlays">&nbsp;</div> 
+            </div>
+        </div>
+
         <div class="buttons">
             <button class='button' id = "rock">Rock</button>
             <button class='button' id = "paper">Paper</button>
             <button class='button' id = "scissors">Scissor</button>
         </div>
-        
-        <div class="match">
-            Player Plays:
-            <div class="uPlays"></div>
-            <br>
-            Computer Plays:
-            <div class="comPlays"></div>
-            <br>
-            Its a:
-            <div class="results"></div>
-            <br>
-        </div>
-
-        <div class="scoreboard">
-            Your Points:
-            <div class="yourPoints"></div>
-            <br>
-            Computer Points:
-            <div class="comPoints"></div>
-            <br>
-            Round:
-            <div class="currentRound"></div>
-        </div>
 
         <div class="endMatch">
-            
+            <div class="endMsg"></div>
         </div>
     </body>
 </html>
