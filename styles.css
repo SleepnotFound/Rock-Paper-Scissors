@@ -10,6 +10,9 @@ body {
     gap: 50px;
     justify-content: center;
 }
+.buttons .button {
+    flex: 0 1 150px;
+}
 .endMatch {
     display: flex;
     justify-content: center;
@@ -24,4 +27,9 @@ body {
 
 .displaying div {
     text-align: center;
+}
+
+.buttons img, .match img {
+    width: 75%;
+    height: auto;
 }
